@@ -1,0 +1,9 @@
+package com.example.simplecleanarchitecturepokemonapp.domain.repository
+
+import com.example.simplecleanarchitecturepokemonapp.common.Resource
+import com.example.simplecleanarchitecturepokemonapp.domain.model.Pokemon
+import kotlinx.coroutines.flow.Flow
+
+interface PokemonRepository {
+    suspend fun getPokemonList(): Flow<Resource<List<Pokemon>>>
+}
