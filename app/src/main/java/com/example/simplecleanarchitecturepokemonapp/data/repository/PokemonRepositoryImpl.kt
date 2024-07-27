@@ -12,18 +12,17 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 class PokemonRepositoryImpl @Inject constructor(private val api: PokemonApi): PokemonRepository {
-    override suspend fun getPokemonList(): Flow<Resource<List<Pokemon>>> = flow {
-          try {
-              emit(Resource.Loading())
-              val pokemonList = api.getPokemonList()
-              val pokemonDomainList = pokemonList.results.map{it.toPokemon()}
-              emit(Resource.Success<List<Pokemon>>(pokemonDomainList))
-          }catch (e: HttpException){
-              emit(Resource.Error(message = e.localizedMessage ?: "An unexpected error occurred"))
-          }catch (e: Exception){
-              emit(Resource.Error(message = e.localizedMessage ?: "An unexpected error occurred"))
-          }
-
+    override fun getPokemonList(): Flow<Resource<List<Pokemon>>> = flow {
+        try {
+            emit(Resource.Loading())
+            val pokemonList = api.getPokemonList()
+            val pokemonDomainList = pokemonList.results.map { it.toPokemon() }
+            emit(Resource.Success(pokemonDomainList))
+        } catch (e: HttpException) {
+            emit(Resource.Error(message = e.localizedMessage ?: "An unexpected error occurred"))
+        } catch (e: Exception) {
+            emit(Resource.Error(message = e.localizedMessage ?: "An unexpected error occurred"))
+        }
     }
 
 
