@@ -6,12 +6,13 @@ import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.simplecleanarchitecturepokemonapp.R
+import com.example.simplecleanarchitecturepokemonapp.common.Constants.BASE_URL_IMAGE
 
 @BindingAdapter("imageUrl", "progressBar")
 fun loadImage(view: ImageView, url: String?, progressBar: ProgressBar?) {
     progressBar?.visibility = if (url.isNullOrEmpty()) View.GONE else View.VISIBLE
 
-    view.load(if (url.isNullOrEmpty()) "" else "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${url[url.length-2]}.png" ) {
+    view.load(if (url.isNullOrEmpty()) "" else "$BASE_URL_IMAGE${url[url.length-2]}.png" ) {
         listener(
             onStart = {
                 progressBar?.visibility = View.VISIBLE
