@@ -16,11 +16,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val getPokemonUesCase: GetPokemonUesCase) : ViewModel() {
+class MainViewModel @Inject constructor(private val getPokemonUesCase: GetPokemonUesCase) :
+    ViewModel() {
 
     init {
+        // Comment this line if you want to manually test the ViewModel without automatically triggering the data fetch.
         getPokemonList()
     }
+
     private val _pokemonList = MutableStateFlow<List<Pokemon>>(emptyList())
     val pokemonList: StateFlow<List<Pokemon>> = _pokemonList
 
@@ -33,7 +36,7 @@ class MainViewModel @Inject constructor(private val getPokemonUesCase: GetPokemo
     private val _progressBar = MutableStateFlow<Boolean>(false)
     val progressBar: StateFlow<Boolean> = _progressBar
 
-    private fun getPokemonList() {
+    fun getPokemonList() {
         viewModelScope.launch {
             getPokemonUesCase().collect { result ->
                 when (result) {
@@ -42,6 +45,7 @@ class MainViewModel @Inject constructor(private val getPokemonUesCase: GetPokemo
                         _progressBar.value = false
                         _pokemonList.value = result.data ?: emptyList()
                     }
+
                     is Resource.Error -> {
                         _progressBar.value = false
                         _flagError.value = true
