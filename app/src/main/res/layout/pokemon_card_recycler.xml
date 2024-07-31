@@ -43,7 +43,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:visibility="gone"
                 android:indeterminateTint="@color/black"
-                tools:src="@drawable/icon_pokemon" />
+                />
 
             <TextView
                 android:id="@+id/pokemonName"

@@ -5,17 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.example.simplecleanarchitecturepokemonapp.R
-
-
-
+import com.example.simplecleanarchitecturepokemonapp.databinding.FragmentPokemonBinding
 
 
 class PokemonFragment : Fragment() {
-    private val args: PokemonFragmentArgs by navArgs()
     private val viewModel: PokemonViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,12 +24,15 @@ class PokemonFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pokemon, container, false)
+        val binding: FragmentPokemonBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_pokemon, container, false
+        )
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         viewModel.setPokemon(args.pokemon)
-
     }
 }

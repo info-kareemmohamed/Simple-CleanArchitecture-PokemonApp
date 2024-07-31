@@ -12,6 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+       android:background="@color/white"
+        android:padding="10dp"
         tools:context=".presentation.pokemon_screen.PokemonFragment">
 
 
@@ -19,14 +21,25 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <ImageView
+                android:id="@+id/pokemonImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:imageUrl="@{viewModel.pokemon.url}"
+                app:progressBar="@{pokemonProgressBar}"
+                tools:src="@drawable/ic_error" />
+
+            <ProgressBar
+                android:id="@+id/pokemonProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:indeterminateTint="@color/black"
                 />
 
 
@@ -39,6 +52,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@{viewModel.pokemon.name}"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textStyle="bold"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,18 +2,22 @@ package com.example.simplecleanarchitecturepokemonapp.presentation.pokemon_scree
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.simplecleanarchitecturepokemonapp.domain.model.Pokemon
-
-class PokemonViewModel : ViewModel() {
-
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+@HiltViewModel
+class PokemonViewModel @Inject constructor(
+  savedStateHandle: SavedStateHandle
+) : ViewModel() {
   private  val _pokemon= MutableLiveData<Pokemon>()
-    val pokemon: LiveData<Pokemon> = _pokemon
+  val pokemon: LiveData<Pokemon> = _pokemon
 
-
-  fun setPokemon(pokemon: Pokemon) {
-    _pokemon.value = pokemon
+  init {
+    _pokemon.postValue(savedStateHandle.get<Pokemon>("pokemon"))
   }
+
 
 
 
