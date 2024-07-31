@@ -1,4 +1,4 @@
-package com.example.simplecleanarchitecturepokemonapp.presentation
+package com.example.simplecleanarchitecturepokemonapp.presentation.home_screen
 
 
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.example.simplecleanarchitecturepokemonapp.presentation
+package com.example.simplecleanarchitecturepokemonapp.presentation.home_screen
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.simplecleanarchitecturepokemonapp.common.Resource

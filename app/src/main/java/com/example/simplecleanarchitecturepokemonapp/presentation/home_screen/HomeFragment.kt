@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplecleanarchitecturepokemonapp.R
 import com.example.simplecleanarchitecturepokemonapp.domain.model.Pokemon
-import com.example.simplecleanarchitecturepokemonapp.presentation.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
