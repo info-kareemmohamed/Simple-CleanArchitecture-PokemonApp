@@ -13,12 +13,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplecleanarchitecturepokemonapp.R
-import com.example.simplecleanarchitecturepokemonapp.presentation.MainViewModel
+import com.example.simplecleanarchitecturepokemonapp.domain.model.Pokemon
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnClickCardListener {
     private lateinit var navController: NavController
     private lateinit var pokemonAdapter: PokemonRecyclerViewAdapter
     private val viewModel: MainViewModel by viewModels()
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recycler = view.findViewById<RecyclerView>(R.id.recycler)
-        pokemonAdapter = PokemonRecyclerViewAdapter(emptyList())
+        pokemonAdapter = PokemonRecyclerViewAdapter(emptyList(),this)
         recycler.layoutManager = LinearLayoutManager(requireContext())
         recycler.setHasFixedSize(true)
         recycler.adapter = pokemonAdapter
@@ -56,5 +56,9 @@ class HomeFragment : Fragment() {
                 pokemonAdapter.updateList(pokemonList)
             }
         }
+    }
+
+    override fun onClick(pokemon: Pokemon) {
+        navController.navigate(HomeFragmentDirections.actionHomeFragmentToPokemonFragment(pokemon))
     }
 }

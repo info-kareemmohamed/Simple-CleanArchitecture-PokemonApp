@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.simplecleanarchitecturepokemonapp.R
 
@@ -15,7 +16,7 @@ import com.example.simplecleanarchitecturepokemonapp.R
 
 class PokemonFragment : Fragment() {
     private val args: PokemonFragmentArgs by navArgs()
-
+    private val viewModel: PokemonViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,7 @@ class PokemonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+         viewModel.setPokemon(args.pokemon)
 
     }
 }
