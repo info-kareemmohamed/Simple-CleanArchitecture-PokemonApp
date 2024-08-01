@@ -44,7 +44,7 @@ class PokemonDatabaseTest {
         val pokemon = Pokemon(name = "Pikachu", url = "http://example.com/pikachu")
         dao.insertPokemon(pokemon)
         val pokemons = dao.getPokemonList().first()
-        
+
         assertNotNull(pokemons)
         assertEquals(1, pokemons.size)
         assertEquals("Pikachu", pokemons[0].name)

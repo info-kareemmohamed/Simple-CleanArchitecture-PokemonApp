@@ -12,7 +12,10 @@ import retrofit2.HttpException
 
 import javax.inject.Inject
 
-class PokemonRepositoryImpl @Inject constructor(private val api: PokemonApi,private val dao: PokemonDao): PokemonRepository {
+class PokemonRepositoryImpl @Inject constructor(
+    private val api: PokemonApi,
+    private val dao: PokemonDao
+) : PokemonRepository {
     override fun getPokemonList(): Flow<Resource<List<Pokemon>>> = flow {
         try {
             emit(Resource.Loading())
@@ -24,6 +27,13 @@ class PokemonRepositoryImpl @Inject constructor(private val api: PokemonApi,priv
         } catch (e: Exception) {
             emit(Resource.Error(message = e.localizedMessage ?: "An unexpected error occurred"))
         }
+    }
+
+    override suspend fun addPokemon(pokemon: Pokemon) = dao.insertPokemon(pokemon)
+
+
+    override suspend fun deletePokemon(pokemon: Pokemon) {
+        dao.deletePokemon(pokemon)
     }
 
 
