@@ -14,7 +14,8 @@ interface PokemonDao {
     suspend fun insertPokemon(pokemon: Pokemon)
 
     @Delete
-    suspend fun deletePokemon(pokemon: Pokemon)
+    suspend fun deletePokemon(pokemon: Pokemon):Int
+
     @Query("SELECT * FROM pokemon")
     fun getPokemonList():Flow<List<Pokemon>>
 
