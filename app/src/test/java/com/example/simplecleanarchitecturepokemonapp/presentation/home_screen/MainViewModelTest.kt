@@ -3,7 +3,7 @@ package com.example.simplecleanarchitecturepokemonapp.presentation.home_screen
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.simplecleanarchitecturepokemonapp.common.Resource
 import com.example.simplecleanarchitecturepokemonapp.domain.model.Pokemon
-import com.example.simplecleanarchitecturepokemonapp.domain.use_case.GetPokemonUesCase
+import com.example.simplecleanarchitecturepokemonapp.domain.use_case.GetPokemonUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertTrue
@@ -26,7 +26,7 @@ class MainViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var viewModel: MainViewModel
-    private lateinit var getPokemonUseCase: GetPokemonUesCase
+    private lateinit var getPokemonUseCase: GetPokemonUseCase
 
     @Before
     fun setup() {

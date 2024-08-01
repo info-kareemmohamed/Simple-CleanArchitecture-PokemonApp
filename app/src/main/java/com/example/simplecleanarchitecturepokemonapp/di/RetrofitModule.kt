@@ -1,6 +1,12 @@
 package com.example.simplecleanarchitecturepokemonapp.di
 
+import android.app.Application
+import android.content.Context
+import androidx.room.Room
 import com.example.simplecleanarchitecturepokemonapp.common.Constants.BASE_URL
+import com.example.simplecleanarchitecturepokemonapp.common.Constants.DATABASE_NAME
+import com.example.simplecleanarchitecturepokemonapp.data.local.PokemonDao
+import com.example.simplecleanarchitecturepokemonapp.data.local.PokemonDatabase
 import com.example.simplecleanarchitecturepokemonapp.data.remote.PokemonApi
 import com.example.simplecleanarchitecturepokemonapp.data.repository.PokemonRepositoryImpl
 import com.example.simplecleanarchitecturepokemonapp.domain.repository.PokemonRepository
@@ -19,14 +25,31 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun providePokemonApi(): PokemonApi {
-        return Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build().create(PokemonApi::class.java)
+        return Retrofit.Builder().baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(PokemonApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun providePokemonRepository(api: PokemonApi): PokemonRepository {
-        return PokemonRepositoryImpl(api)
+    fun providePokemonRepository(api: PokemonApi,dao: PokemonDao): PokemonRepository {
+        return PokemonRepositoryImpl(api,dao)
     }
 
 
+    @Provides
+    @Singleton
+    fun providePokemonDatabase(context: Application): PokemonDatabase {
+        return Room.databaseBuilder(
+            context,
+            PokemonDatabase::class.java,
+            DATABASE_NAME
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun providePokemonDao(database: PokemonDatabase):PokemonDao{
+        return database.dao
+    }
 }

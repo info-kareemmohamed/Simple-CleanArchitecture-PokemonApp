@@ -8,15 +8,15 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 
-class GetPokemonUesCaseTest {
+class GetPokemonUseCaseTest {
 
 
-    private lateinit var getPokemonUseCase: GetPokemonUesCase
+    private lateinit var getPokemonUseCase: GetPokemonUseCase
 
     @Before
     fun setUp() {
         // Initialize with a default fake repository that does not return errors
-        getPokemonUseCase = GetPokemonUesCase(FakePokemonRepository())
+        getPokemonUseCase = GetPokemonUseCase(FakePokemonRepository())
     }
 
     @Test
@@ -36,7 +36,7 @@ class GetPokemonUesCaseTest {
     @Test
     fun `invoke returns error`() = runTest {
         // Initialize with a fake repository that returns an error
-        getPokemonUseCase = GetPokemonUesCase(FakePokemonRepository(true))
+        getPokemonUseCase = GetPokemonUseCase(FakePokemonRepository(true))
 
         val result = getPokemonUseCase().toList()
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simplecleanarchitecturepokemonapp.common.Resource
 import com.example.simplecleanarchitecturepokemonapp.domain.model.Pokemon
-import com.example.simplecleanarchitecturepokemonapp.domain.use_case.GetPokemonUesCase
+import com.example.simplecleanarchitecturepokemonapp.domain.use_case.GetPokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val getPokemonUesCase: GetPokemonUesCase) :
+class MainViewModel @Inject constructor(private val getPokemonUesCase: GetPokemonUseCase) :
     ViewModel() {
 
     init {

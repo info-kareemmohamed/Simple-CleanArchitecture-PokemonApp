@@ -75,10 +75,22 @@ dependencies {
     ///hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+    androidTestImplementation ("com.google.dagger:hilt-android-testing:2.47")
+    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:2.47")
     //splashscreen
     implementation(libs.androidx.core.splashscreen)
     /////COIL
     implementation(libs.coil)
 
+    // Room runtime
+    implementation ("androidx.room:room-runtime:2.6.1")
+
+    // Room compiler for annotation processing
+    kapt ("androidx.room:room-compiler:2.6.1")
+
+    // Room KTX for Kotlin coroutines support
+    implementation ("androidx.room:room-ktx:2.6.1")
+    // Room Testing
+    testImplementation ("androidx.room:room-testing:2.6.1")
 
 }

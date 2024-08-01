@@ -15,6 +15,6 @@ import javax.inject.Inject
  * @param repository The repository to fetch the Pokemon list from.
  */
 
-class GetPokemonUesCase @Inject constructor(private val repository: PokemonRepository) {
+class GetPokemonUseCase @Inject constructor(private val repository: PokemonRepository) {
      operator fun invoke() = repository.getPokemonList()
 }
