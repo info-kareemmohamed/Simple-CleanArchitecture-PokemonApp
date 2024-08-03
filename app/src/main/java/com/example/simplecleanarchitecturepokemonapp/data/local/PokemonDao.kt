@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PokemonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPokemon(pokemon: Pokemon)
+    suspend fun insertPokemon(vararg pokemon: Pokemon )
 
     @Delete
-    suspend fun deletePokemon(pokemon: Pokemon):Int
+    suspend fun deletePokemon(vararg pokemon: Pokemon):Int
 
     @Query("SELECT * FROM pokemon")
     fun getPokemonList():Flow<List<Pokemon>>

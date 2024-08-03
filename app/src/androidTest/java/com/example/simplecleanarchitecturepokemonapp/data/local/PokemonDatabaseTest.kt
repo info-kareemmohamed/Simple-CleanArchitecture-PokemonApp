@@ -41,12 +41,12 @@ class PokemonDatabaseTest {
 
     @Test
     fun testInsertAndGetPokemon() = runBlocking {
-        val pokemon = Pokemon(name = "Pikachu", url = "http://example.com/pikachu")
-        dao.insertPokemon(pokemon)
+        val pokemon = listOf( Pokemon(name = "Pikachu", url = "http://example.com/pikachu"),Pokemon(name = "Pikachu1", url = "http://example.com/pikachu") )
+        dao.insertPokemon(*pokemon.toTypedArray())
         val pokemons = dao.getPokemonList().first()
 
         assertNotNull(pokemons)
-        assertEquals(1, pokemons.size)
+        assertEquals(2, pokemons.size)
         assertEquals("Pikachu", pokemons[0].name)
     }
 
