@@ -10,6 +10,7 @@ import com.example.simplecleanarchitecturepokemonapp.data.local.PokemonDatabase
 import com.example.simplecleanarchitecturepokemonapp.data.remote.PokemonApi
 import com.example.simplecleanarchitecturepokemonapp.data.repository.PokemonRepositoryImpl
 import com.example.simplecleanarchitecturepokemonapp.domain.repository.PokemonRepository
+import com.example.simplecleanarchitecturepokemonapp.domain.use_case.AddPokemonUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,5 +52,9 @@ object RetrofitModule {
     @Singleton
     fun providePokemonDao(database: PokemonDatabase):PokemonDao{
         return database.dao
+    }
+    @Provides
+    fun provideAddPokemonUseCase(repository: PokemonRepository): AddPokemonUseCase {
+        return AddPokemonUseCase(repository)
     }
 }

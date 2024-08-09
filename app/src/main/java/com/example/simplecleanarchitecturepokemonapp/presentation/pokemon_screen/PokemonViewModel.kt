@@ -15,6 +15,7 @@ class PokemonViewModel @Inject constructor(
   val pokemon: LiveData<Pokemon> = _pokemon
 
   init {
+
     _pokemon.postValue(savedStateHandle.get<Pokemon>("pokemon"))
   }
 

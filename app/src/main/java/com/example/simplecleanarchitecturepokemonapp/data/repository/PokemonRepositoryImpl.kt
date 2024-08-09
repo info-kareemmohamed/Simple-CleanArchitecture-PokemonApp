@@ -29,7 +29,7 @@ class PokemonRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun addPokemon(pokemon: Pokemon) = dao.insertPokemon(pokemon)
+    override suspend fun addPokemon(pokemon: List<Pokemon>) = dao.insertPokemon(*pokemon.toTypedArray())
 
 
     override suspend fun deletePokemon(pokemon: Pokemon) {

@@ -5,6 +5,6 @@ import com.example.simplecleanarchitecturepokemonapp.domain.repository.PokemonRe
 import javax.inject.Inject
 
 class AddPokemonUseCase @Inject constructor (private val repository: PokemonRepository)  {
-suspend operator fun invoke(pokemon: Pokemon) = repository.addPokemon(pokemon)
+suspend operator fun invoke(pokemon: List<Pokemon>) = repository.addPokemon(pokemon)
 
 }
